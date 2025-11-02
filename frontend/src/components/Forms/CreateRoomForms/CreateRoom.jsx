@@ -1,8 +1,11 @@
 import React from 'react'
 import axios from 'axios';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 
 const CreateRoom = () => {
+
+    const navigate = useNavigate();
     const [roomCode, setRoomCode] = useState('');
     const [rounds, setRounds] = useState(3);
     const [time, setTime] = useState(60);
@@ -23,11 +26,14 @@ const CreateRoom = () => {
             });
 
             if (res.data.success) {
-                setRoomCode(res.data.roomCode);
+                const newRoomCode = res.data.roomCode
+                setRoomCode(newRoomCode);
                 alert(`Room created! Code: ${res.data.roomCode}`);
-                // Store playerId in localStorage or state for later use
+                
                 localStorage.setItem('playerId', res.data.playerId);
                 localStorage.setItem('roomCode', res.data.roomCode);
+
+                navigate(`/lobby/${newRoomCode}`);
             }
         } catch (err) {
             console.error('Error creating room:', err);
