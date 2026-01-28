@@ -1,6 +1,7 @@
 # Node modules
 node_modules/
 
+socket/rough.js
 # Environment files
 .env
 

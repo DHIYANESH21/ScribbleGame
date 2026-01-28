@@ -1,3 +1,4 @@
+//server.js
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -16,6 +17,9 @@ const io = new Server(httpserver, {
   }
 });
 
+const GameSocket = require('../backend/socket/GameSocket.js')
+GameSocket(io);
+
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/scribbleDB";
 
@@ -23,13 +27,13 @@ mongoose.connect(MONGO_URI)
 .then(() => console.log("✅ MongoDB connected successfully"))
 .catch(err => console.error("❌ MongoDB connection error:", err));
 
-io.on('connection', (socket) => {
-  console.log('A user connected:', socket.id);
+// io.on('connection', (socket) => {
+//   console.log('A user connected:', socket.id);
 
-  socket.on('disconnect', () => {
-    console.log('A user disconnected:', socket.id);
-  });
-});
+//   socket.on('disconnect', () => {
+//     console.log('A user disconnected:', socket.id);
+//   });
+// });
 
 app.use(express.json());
 app.use(cors());
