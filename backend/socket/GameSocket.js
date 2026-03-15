@@ -11,7 +11,7 @@ module.exports = (io) => {
     require("../controllers/handlers/gameStartHandler")(io, socket);
     require("../controllers/handlers/gameJoinHandler")(io, socket);
     require("../controllers/handlers/wordChoiceHandler")(io, socket);
-    require("../controllers/handlers/drawingHandler")(io, socket);
+    require("../controllers/handlers/DrawingHandler")(io, socket);
     require("../controllers/handlers/disconnectHandler")(io, socket);
   });
 };

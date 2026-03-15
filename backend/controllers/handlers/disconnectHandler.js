@@ -22,7 +22,7 @@ module.exports = (io, socket) => {
 
       io.to(room._id.toString()).emit("lobby:playerList", {
         players,
-        count: players.length, // ✅ keep client happy
+        count: players.length, 
       });
     } catch (e) {
       console.error("Disconnect cleanup error:", e);
